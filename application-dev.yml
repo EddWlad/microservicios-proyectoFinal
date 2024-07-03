@@ -1,12 +1,11 @@
 spring:
   application:
     name: CONFIG-DEV
-datasource:
+  datasource:
     url: jdbc:mysql://localhost:3362/db_donkey
     username: donkeyMy
     password: pwd1234567890
     driver-class-name: com.mysql.cj.jdbc.Driver
-
   jpa:
     show-sql: true
     properties:
