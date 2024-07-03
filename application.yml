@@ -3,8 +3,7 @@ datasource:
     username: donkeyMy
     password: pwd1234567890
     driver-class-name: com.mysql.cj.jdbc.Driver
-
-  jpa:
+jpa:
     show-sql: true
     properties:
       hibernate:
