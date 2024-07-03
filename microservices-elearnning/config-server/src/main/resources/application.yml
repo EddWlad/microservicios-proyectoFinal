@@ -1,0 +1,14 @@
+server: 
+  port: 8085
+spring:
+  application:
+    name: CONFIG-SERVER
+        
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/EddWlad/microservicios-proyectoFinal
+          clone-on-start: true
+          username: EddWlad
+          password: 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

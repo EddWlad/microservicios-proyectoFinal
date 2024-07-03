@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  postgres-db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: donkeyPg
+      POSTGRES_DB: db_donkey
+      POSTGRES_PASSWORD: pwd1234567890
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - 5435:5432
+
+  mysql-db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: db_donkey
+      MYSQL_USER: donkeyMy
+      MYSQL_PASSWORD: pwd1234567890
+      MYSQL_ROOT_PASSWORD: rootpassword
+    volumes:
+      - mysql:/var/lib/mysql
+    ports:
+      - 3360:3306
+
+volumes:
+  postgres:
+  mysql:
