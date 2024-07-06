@@ -13,6 +13,8 @@ import com.uisrael.courses_service.exception.ResourcesNotFoundException;
 import com.uisrael.courses_service.repository.ICoursesRepository;
 import com.uisrael.courses_service.service.ICoursesService;
 
+import brave.Span;
+
 @Service
 public class CoursesServiceImpl implements ICoursesService{
 	
