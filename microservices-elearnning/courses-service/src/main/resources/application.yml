@@ -4,6 +4,10 @@ server:
 spring:
   application:
     name: COURSES-SERVICE
+    
+  cloud:
+    compatibility-verifier:
+      enabled: false
 
   config:
     import: configserver:http://localhost:8085
