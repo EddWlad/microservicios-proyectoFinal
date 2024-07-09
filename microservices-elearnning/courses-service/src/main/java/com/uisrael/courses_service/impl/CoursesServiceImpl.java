@@ -13,6 +13,9 @@ import com.uisrael.courses_service.exception.ResourcesNotFoundException;
 import com.uisrael.courses_service.repository.ICoursesRepository;
 import com.uisrael.courses_service.service.ICoursesService;
 
+import brave.Span;
+import brave.Tracer;
+
 @Service
 public class CoursesServiceImpl implements ICoursesService{
 	
@@ -24,6 +27,7 @@ public class CoursesServiceImpl implements ICoursesService{
 	@Autowired
 	private ICoursesRepository coursesRepository;
 
+	
 	@Override
 	public List<Courses> getAll() {
 		return coursesRepository.findByStateNot(0);
