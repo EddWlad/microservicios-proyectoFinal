@@ -1,4 +1,4 @@
-package com.uisrael.courses_service.impl;
+package com.uisrael.courses_service.service.impl;
 
 import java.util.List;
 import java.util.Optional;
