@@ -1,6 +1,6 @@
 spring:
   application:
-    name: CONFIG-PRODUC
+    name: CONFIG-ENROLLMENT
   data:
     mongodb:
       host: localhost
