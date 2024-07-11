@@ -13,10 +13,18 @@ spring:
           enabled: true
           lower-case-service-id: true
       routes:
-        - id: CONFIG-PRODUC
-          uri: lb://CONFIG-PRODUC
+        - id: CONFIG-COURSES
+          uri: lb://CONFIG-COURSES
           predicates:
             - Path=/courses/**
+        - id: ENROLLMENT-SERVICE
+          uri: lb://ENROLLMENT-SERVICE
+          predicates:
+            - Path=/enrollment/**
+        - id: GRADES-SERVICE
+          uri: lb://GRADES-SERVICE
+          predicates:
+            - Path=/grades/**
 
 eureka:
   instance:

@@ -13,6 +13,7 @@ import com.uisrael.grades_service.exception.ResourcesNotFoundException;
 import com.uisrael.grades_service.reporitory.IGradesRepository;
 import com.uisrael.grades_service.service.IGradesService;
 
+@Service
 public class GradesServiceImpl implements IGradesService{
 
 	@Autowired
