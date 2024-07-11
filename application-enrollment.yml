@@ -1,0 +1,10 @@
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: enrollment  
+      username: diana
+      password: mongo
+      authentication-database: admin
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
