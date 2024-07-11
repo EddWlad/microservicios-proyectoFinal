@@ -1,12 +1,12 @@
-  datasource:
-    url: jdbc:mysql://localhost:3360/db_donkey
-    username: donkeyMy
-    password: pwd1234567890
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    show-sql: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
+datasource:
+  url: jdbc:mysql://localhost:3360/db_donkey
+  username: donkeyMy
+  password: pwd1234567890
+  driver-class-name: com.mysql.cj.jdbc.Driver
+jpa:
+  show-sql: true
+  properties:
+    hibernate:
+      dialect: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: update
