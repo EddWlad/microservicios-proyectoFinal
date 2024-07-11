@@ -8,5 +8,5 @@ jpa:
   properties:
     hibernate:
       dialect: org.hibernate.dialect.MySQLDialect
-    hibernate:
-      ddl-auto: update
+  hibernate:
+    ddl-auto: update
