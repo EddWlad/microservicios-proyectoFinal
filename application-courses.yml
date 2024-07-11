@@ -1,6 +1,3 @@
-spring:
-  application:
-    name: CONFIG-PRODUC
   datasource:
     url: jdbc:mysql://localhost:3360/db_donkey
     username: donkeyMy
