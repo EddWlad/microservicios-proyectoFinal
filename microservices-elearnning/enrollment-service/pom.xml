@@ -46,7 +46,6 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-			<version>4.1.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -79,7 +78,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<artifactId>spring-cloud-starter-bootstrap</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -92,7 +91,6 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-context</artifactId>
-			<version>2.2.9.RELEASE</version>
 		</dependency>
 	</dependencies>
 	<dependencyManagement>
@@ -100,7 +98,7 @@
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>2021.0.0</version> <!-- Cambia esta versión según la
+				<version>2021.0.4</version> <!-- Cambia esta versión según la
 				recomendación -->
 				<type>pom</type>
 				<scope>import</scope>

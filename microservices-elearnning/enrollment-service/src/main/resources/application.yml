@@ -11,7 +11,7 @@ spring:
   config:
     import: configserver:http://localhost:8085
   profiles:
-    active: CONFIG-ENROLLMENT
+    active: enrollment
 
  
 eureka:
