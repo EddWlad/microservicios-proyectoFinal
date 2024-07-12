@@ -1,9 +1,12 @@
-datasource:
-    url: jdbc:mysql://localhost:3361/db_donkey
+spring:
+  application:
+    name: CONFIG-COURSES
+  datasource:
+    url: jdbc:mysql://localhost:3360/db_donkey
     username: donkeyMy
     password: pwd1234567890
     driver-class-name: com.mysql.cj.jdbc.Driver
-jpa:
+  jpa:
     show-sql: true
     properties:
       hibernate:
