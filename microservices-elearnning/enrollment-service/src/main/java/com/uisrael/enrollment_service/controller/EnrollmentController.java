@@ -3,7 +3,8 @@ package com.uisrael.enrollment_service.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,56 +12,60 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.uisrael.enrollment_service.entity.Enrollment;
 import com.uisrael.enrollment_service.service.IEnrollmentService;
 
-
-@Controller
+@RestController
 @RequestMapping("enrollment")
 public class EnrollmentController {
 	@Autowired
 	private IEnrollmentService enrollmentservice;
 
 	@GetMapping
-	@ResponseBody
-	public List<Enrollment> listEnrollment() {
+	public ResponseEntity<List<Enrollment>> listEnrollment() {
 		List<Enrollment> Enrollments = enrollmentservice.listenrollment();
-		return Enrollments;
+		return ResponseEntity.ok(Enrollments);
 	}
 
 	@GetMapping("/{id}")
-	@ResponseBody
-	public Enrollment getEnrollment(@PathVariable String id) {
+	public ResponseEntity<Enrollment> getEnrollment(@PathVariable String id) {
 		Enrollment Enrollment = enrollmentservice.obtenerPorId(id);
-		return Enrollment;
+		if(Enrollment !=null) {
+			return ResponseEntity.ok(Enrollment);
+		}
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 	}
 
 	@PostMapping()
-	@ResponseBody
-	public Enrollment createEnrollment(@RequestBody Enrollment Enrollment) {
-		return enrollmentservice.create(Enrollment);
+	public ResponseEntity<Enrollment> createEnrollment(@RequestBody Enrollment Enrollment) {
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 	}
 
 	@PutMapping("/{id}")
-	@ResponseBody
-	public Enrollment updateEnrollment(@PathVariable String id, @RequestBody Enrollment Enrollment) {
-		Enrollment EnrollmentDb = enrollmentservice.obtenerPorId(id);
-		if (EnrollmentDb != null) {
-			EnrollmentDb.setIduser(Enrollment.getIduser());
-			EnrollmentDb.setIdcourse(Enrollment.getIdcourse());
-			EnrollmentDb.setState(Enrollment.getState());
-			EnrollmentDb.setDescription(Enrollment.getDescription());
-			EnrollmentDb.setCreationdate(Enrollment.getCreationdate());
-		}
-
-		return enrollmentservice.update(EnrollmentDb);
+	public ResponseEntity<?> updateEnrollment(@PathVariable String id, @RequestBody Enrollment enrollment) {
+		 try {
+	            Enrollment enrollmentupdate  = enrollmentservice.obtenerPorId(id);
+	            
+	            if (enrollmentupdate != null) {
+	                enrollmentservice.update(id, enrollmentupdate);
+	                return ResponseEntity.ok("Enrollment updated successfully");
+	            } else {
+	                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Enrollment not found");
+	            }
+	        } catch (Exception e) {
+	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+	        }
 	}
 
 	@DeleteMapping("/{id}")
-	@ResponseBody
-	public void deleteEnrollment(@PathVariable String id) {
-		enrollmentservice.delate(id);
+	public ResponseEntity<String> deleteEnrollment(@PathVariable String id) {
+			boolean result = enrollmentservice.delate(id);
+        if (result) {
+            return ResponseEntity.ok("The enrollment was successfully deleted.");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("There was a problem deleting the course.");
+        }
 	}
 }

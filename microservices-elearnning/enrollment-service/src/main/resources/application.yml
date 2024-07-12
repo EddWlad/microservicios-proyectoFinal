@@ -1,5 +1,5 @@
 server:
-  port: 8087
+  port: 0
 spring:
   application:
     name: enrrollment-service    
@@ -10,7 +10,7 @@ spring:
   config:
     import: configserver:http://localhost:8085
   profiles:
-    active: prod
+    active: CONFIG-ENROLLMENT
     
     
   data:
