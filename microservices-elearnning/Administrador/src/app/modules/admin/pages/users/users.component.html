@@ -1,0 +1,51 @@
+<div>
+    <ul class="flex space-x-2 rtl:space-x-reverse">
+        <li>
+            <a href="javascript:;" class="text-primary hover:underline">Usuarios y permisos</a>
+        </li>
+        <li class="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
+            <span>Usuarios</span>
+        </li>
+    </ul>
+    <div class="panel border-[#e0e6ed] px-0 pb-1.5 mt-2 dark:border-[#1b2e4b]">
+        <div class="datatable invoice-table">
+            <div class="mb-4.5 flex flex-col gap-5 px-5 md:flex-row md:items-center">
+                <div class="flex items-center gap-2">
+                    <button type="button" class="btn btn-primary gap-2" (click)="openModal()"  *appAuthorization=" { module: 'Usuarios', permit: 'write' }">
+                        <icon-plus />
+                        Nuevo
+                    </button>
+                </div>
+                <div class="ltr:ml-auto rtl:mr-auto">
+                    <input [(ngModel)]="searchCtrl" type="text" class="form-input"
+                        placeholder="Buscar..." />
+                </div>
+            </div>
+
+            <ng-datatable #datatable [rows]="users()" [columns]="cols" [hasCheckbox]="false" [sortable]="true"
+            [columnFilter]="false" [loading]="loading"  (changeServer)="changeServer($event)"
+            [noDataContent]="messageData" [pageSize]="params.limit" [sortColumn]="params.sort_column"
+            [sortDirection]="params.sort_direction" [totalRows]="totalRows" [isServerMode]="true" [search]="searchCtrl"
+                firstArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M13 19L7 12L13 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M16.9998 19L10.9998 12L16.9998 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
+                lastArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M11 19L17 12L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M6.99976 19L12.9998 12L6.99976 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg> '
+                previousArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M15 5L9 12L15 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
+                nextArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'>
+                <ng-template slot="status" let-value="data">
+                    <span class="badge"
+                        [ngClass]="[value.status === 'Activo' ? 'badge-outline-success' : 'badge-outline-danger']">
+                        {{value.status}} </span>
+                </ng-template>
+                <ng-template slot="actions" let-value="data">
+                    <div class="flex items-center justify-center gap-4">
+                        <button type="button" class="hover:text-primary" (click)="EditUser(value.id)"  *appAuthorization=" { module: 'Usuarios', permit: 'update' }">
+                            <icon-edit class="h-4.5 w-4.5" />
+                        </button>
+                        <button type="button" class="hover:text-danger" (click)="DeleteUser(value.id)"  *appAuthorization=" { module: 'Usuarios', permit: 'delete' }">
+                            <icon-trash-lines />
+                        </button>
+                    </div>
+                </ng-template>
+            </ng-datatable>
+        </div>
+    </div>
+</div>

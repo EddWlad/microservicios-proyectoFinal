@@ -26,6 +26,20 @@ services:
     ports:
       - 3360:3306
 
+  db-users:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: userServicio
+      POSTGRES_DB: db_userServices
+      POSTGRES_PASSWORD: 123456
+    volumes:
+      - postgres_users:/var/lib/postgresql/data
+    ports:
+      - 5435:5432
+
+
 volumes:
+  postgres_users:
   postgres:
   mysql:

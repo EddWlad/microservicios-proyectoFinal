@@ -9,6 +9,11 @@ spring:
     gateway:
     
       discovery:
+       client:
+        simple:
+          instances:
+            api-gateway:
+              - uri: http://localhost:8084
         locator:
           enabled: true
           lower-case-service-id: true
@@ -17,6 +22,13 @@ spring:
           uri: lb://CONFIG-PRODUC
           predicates:
             - Path=/courses/**
+
+        - id: USERS-SERVICE
+          uri: lb://USERS-SERVICE
+          predicates:
+          - Path=/users/**
+          filters:
+          - RewritePath=/users/(?<segment>.*), /$\{segment}
 
 eureka:
   instance:
