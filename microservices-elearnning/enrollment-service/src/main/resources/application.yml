@@ -10,22 +10,17 @@ spring:
   config:
     import: configserver:http://localhost:8085
   profiles:
-    active: CONFIG-ENROLLMENT
-    
-    
-  data:
-    mongodb:
-      host: localhost
-      port: 27017
-      database: enrollment  
-      username: diana
-      password: mongo
-      authentication-database: admin
-  autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+    active: enrollment
+
  
 eureka:
-    client:
-      serviceUrl:
-       defaultZone: http://eureka:password@localhost:8761/eureka
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${instaceId:${random.value}}
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
          
