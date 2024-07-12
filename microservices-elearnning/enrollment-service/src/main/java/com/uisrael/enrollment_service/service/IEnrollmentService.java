@@ -9,8 +9,8 @@ public interface IEnrollmentService  {
 	
 	Enrollment obtenerPorId(String id);
 	Enrollment create(Enrollment enrollment);
-	Enrollment update (Enrollment enrollment);
-	void delate(String Id);
+	Enrollment update (String id, Enrollment enrollment);
+	public boolean delate(String Id);
 	List <Enrollment> listenrollment();
 
 }
