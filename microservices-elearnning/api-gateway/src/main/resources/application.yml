@@ -21,8 +21,8 @@ spring:
           uri: lb://CONFIG-ENROLLMENT
           predicates:
             - Path=/enrollment/**
-        - id: GRADES-SERVICE
-          uri: lb://GRADES-SERVICE
+        - id: CONFIG-GRADES
+          uri: lb://CONFIG-GRADES
           predicates:
             - Path=/grades/**
 
