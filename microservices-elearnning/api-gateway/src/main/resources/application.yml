@@ -25,7 +25,6 @@ spring:
           uri: lb://CONFIG-GRADES
           predicates:
             - Path=/grades/**
-
 eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}

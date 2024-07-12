@@ -18,7 +18,7 @@ import com.uisrael.enrollment_service.entity.Enrollment;
 import com.uisrael.enrollment_service.service.IEnrollmentService;
 
 @RestController
-@RequestMapping("enrollment")
+@RequestMapping("/enrollment")
 public class EnrollmentController {
 	@Autowired
 	private IEnrollmentService enrollmentservice;
