@@ -22,7 +22,6 @@ spring:
           uri: lb://CONFIG-COURSES
           predicates:
             - Path=/courses/**
-<<<<<<< HEAD
 
         - id: USERS-SERVICE
           uri: lb://USERS-SERVICE
@@ -31,16 +30,6 @@ spring:
           filters:
           - RewritePath=/users/(?<segment>.*), /$\{segment}
 
-=======
-        - id: CONFIG-ENROLLMENT
-          uri: lb://CONFIG-ENROLLMENT
-          predicates:
-            - Path=/enrollment/**
-        - id: CONFIG-GRADES
-          uri: lb://CONFIG-GRADES
-          predicates:
-            - Path=/grades/**
->>>>>>> 9a442721033f026bbe05362a5180179610aa7665
 eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
