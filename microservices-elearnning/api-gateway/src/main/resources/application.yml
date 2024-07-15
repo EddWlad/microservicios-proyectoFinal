@@ -29,6 +29,11 @@ spring:
           - Path=/users/**
           filters:
           - RewritePath=/users/(?<segment>.*), /$\{segment}
+        
+        - id: AUTH-SERVICE
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth/**
 
 eureka:
   instance:
