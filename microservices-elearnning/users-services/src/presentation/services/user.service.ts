@@ -32,11 +32,11 @@ export class UserService {
       await user.save();
 
       //Email de confirmacion
-      await this.sendEmailValidationLink(
-        user.use_email,
-        user.use_name,
-        user.use_lastname
-      );
+      // await this.sendEmailValidationLink(
+      //   user.use_email,
+      //   user.use_name,
+      //   user.use_lastname
+      // );
 
       const { use_password, ...userEntity } = UserEntity.fromObject(user);
       return {

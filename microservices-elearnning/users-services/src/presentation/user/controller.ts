@@ -24,7 +24,6 @@ export class UserController {
   createUser = (req: Request, res: Response) => {
     const [error, registerDto] = CreateUserDto.create({
       ...req.body,
-      use_creator_user: req.body.user.use_code,
     });
 
     if (error) return res.status(400).json(error);

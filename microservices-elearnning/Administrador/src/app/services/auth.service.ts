@@ -13,8 +13,7 @@ export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
   private tokenService = inject(TokenService);
-  private apiUrl = `${environment.API_URL}api/auth`;
-
+  private apiUrl = `${environment.API_URL}users/api/auth`;
 
   constructor() {}
 

@@ -12,7 +12,6 @@ export class CreateUserDto {
     public use_status: number,
     public use_role: string,
     public use_img: string,
-    public use_creator_user: string
   ) {}
 
   static create(object: { [key: string]: any }): [string?, CreateUserDto?] {
@@ -27,7 +26,6 @@ export class CreateUserDto {
       use_status,
       use_role,
       use_img,
-      use_creator_user
     } = object;
 
     if (!use_name) return ["Missin name"];
@@ -40,9 +38,6 @@ export class CreateUserDto {
     if (!use_phone) return ["Missin phone"];
     if (!use_address) return ["Missin address"];
     if (!use_status) return ["Missin status"];
-
-    if (!use_creator_user) return ["Missin user creator"];
-    if( !Validators.isUUID(use_creator_user)) return ['Invalid user ID'];
 
     if (!use_role) return ["Missin role"];
     if( !Validators.isUUID(use_role)) return ['Invalid rol ID']
@@ -60,7 +55,6 @@ export class CreateUserDto {
         use_status,
         use_role,
         use_img,
-        use_creator_user
       ),
     ];
   }

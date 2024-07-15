@@ -36,10 +36,6 @@ export class User extends BaseEntity {
     @Column({default:1})
     use_status!: number
 
-    @ManyToOne(() => User, (user) => user.use_code)
-    @JoinColumn({ name: 'use_creator_user' })
-    use_creator_user!: User;
-
     @ManyToOne(() => Role, (role) => role.rol_code)
     @JoinColumn({ name: 'use_role' })
     use_role!: Role;
