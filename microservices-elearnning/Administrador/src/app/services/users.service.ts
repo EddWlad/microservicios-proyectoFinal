@@ -12,7 +12,7 @@ export class UsersService {
 
   private http = inject(HttpClient);
   private helpers = inject(HelpersService);
-  private apiUrl = `${environment.API_URL}api/usuarios`;
+  private apiUrl = `${environment.API_URL}users/api/user`;
   constructor() {}
 
   GetUsers(page: number, limit: number, search?: string): Observable<UsersResponse> {

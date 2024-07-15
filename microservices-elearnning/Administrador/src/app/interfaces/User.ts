@@ -28,8 +28,7 @@ export interface User {
   use_settlement: number;
   use_create_at: string;
   use_role: UseRole;
-  use_superior: UseSuperior;
-  use_creator_user: UseCreator;
+
 }
 
 export interface UseRole {
@@ -37,16 +36,6 @@ export interface UseRole {
   rol_name: string;
 }
 
-export interface UseSuperior {
-  use_code: string;
-  use_name: string;
-  use_lastname: string;
-}
-export interface UseCreator {
-  use_code: string;
-  use_name: string;
-  use_lastname: string;
-}
 
 export interface UserTable {
   id: string;

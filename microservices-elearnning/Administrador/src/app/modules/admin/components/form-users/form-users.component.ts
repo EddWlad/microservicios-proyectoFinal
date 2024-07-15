@@ -53,7 +53,6 @@ export class FormUsersComponent implements OnInit {
     use_settlement: new FormControl(0),
     use_password: new FormControl(null),
     use_confirm_password: new FormControl(null),
-    use_superior: new FormControl(null),
     use_role: new FormControl(null),
     use_status: new FormControl(1),
     use_route: new FormControl(1),
@@ -124,7 +123,6 @@ export class FormUsersComponent implements OnInit {
         use_settlement: this.user()?.use_settlement,
         use_route: this.user()?.use_route,
         use_address: this.user()?.use_address,
-        use_superior: this.user()?.use_superior.use_code,
         use_role: this.user()?.use_role.rol_code,
         use_status: this.user()?.use_status,
       });
