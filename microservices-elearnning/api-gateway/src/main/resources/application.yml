@@ -9,6 +9,11 @@ spring:
     gateway:
     
       discovery:
+       client:
+        simple:
+          instances:
+            api-gateway:
+              - uri: http://localhost:8084
         locator:
           enabled: true
           lower-case-service-id: true
@@ -17,14 +22,19 @@ spring:
           uri: lb://CONFIG-COURSES
           predicates:
             - Path=/courses/**
-        - id: CONFIG-ENROLLMENT
-          uri: lb://CONFIG-ENROLLMENT
+
+        - id: USERS-SERVICE
+          uri: lb://USERS-SERVICE
           predicates:
-            - Path=/enrollment/**
-        - id: CONFIG-GRADES
-          uri: lb://CONFIG-GRADES
+          - Path=/users/**
+          filters:
+          - RewritePath=/users/(?<segment>.*), /$\{segment}
+        
+        - id: AUTH-SERVICE
+          uri: lb://AUTH-SERVICE
           predicates:
-            - Path=/grades/**
+            - Path=/auth/**
+
 eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}

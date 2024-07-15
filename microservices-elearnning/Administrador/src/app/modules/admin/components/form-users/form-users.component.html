@@ -1,0 +1,116 @@
+<div class="fixed inset-0 z-[999] overflow-y-auto bg-[black]/60 dark:border-[#1b2e4b] dark:text-white-dark">
+    <div class="flex min-h-screen items-center justify-center px-4">
+        <div class="panel my-8 w-[90%] max-w-2xl rounded-lg border-0 p-0 md:w-full" (cdkOutsideClick)="close()">
+            <button type="button" class="absolute top-4 text-white-dark hover:text-dark ltr:right-4 rtl:left-4"
+                (click)="close()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                    class="h-6 w-6">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div
+                class="bg-primary py-3 text-lg font-normal ltr:pl-5 ltr:pr-[50px] rtl:pr-5 rtl:pl-[50px] dark:bg-[#121c2c] text-white">
+                {{(this.formUser.getRawValue().use_code ? 'Editar usuario' : 'Nuevo usuario') }}</div>
+            <div class="p-5">
+                <form class="space-y-5 grid-cols-2" [formGroup]="formUser" (ngSubmit)="saveUser()">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="actionName">Nombre:</label>
+                            <input id="actionName" type="text" placeholder="Ingresa tu nombre"
+                                class="form-input" formControlName="use_name" />
+                        </div>
+                        <div>
+                            <label for="actionLastName">Apellido:</label>
+                            <input id="actionLastName" type="text" placeholder="Ingresa tu apellido"
+                                class="form-input" formControlName="use_lastname" />
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="actionNui">Identificación:</label>
+                            <input id="actionNui" type="text" placeholder="Ingresa tu identificación"
+                                class="form-input" formControlName="use_nui" />
+                        </div>
+                        <div>
+                            <label for="actionPhone">Teléfono:</label>
+                            <input id="actionPhone" type="text" placeholder="Ingresa tu numero de teléfono"
+                                class="form-input" formControlName="use_phone" />
+                        </div>
+                    </div>
+                    <div>
+                        <label for="actionAddress">Dirección:</label>
+                        <input id="actionAddress" type="text" placeholder="Ingresa tu dirección"
+                            class="form-input" formControlName="use_address" />
+                    </div>
+                    <div>
+                        <label for="actionEmail">Correo:</label>
+                        <div class="flex flex-1">
+                            <div
+                                class="bg-[#eee] flex justify-center items-center ltr:rounded-l-md rtl:rounded-r-md px-3 font-semibold border ltr:border-r-0 rtl:border-l-0 border-[#e0e6ed] dark:border-[#17263c] dark:bg-[#1b2e4b]">
+                                &#64;</div>
+                            <input id="actionEmail" type="email" placeholder="Ingresa el correo"
+                                class="form-input ltr:rounded-l-none rtl:rounded-r-none"
+                                formControlName="use_email" />
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="actionPassword">Contraseña:</label>
+                            <input id="actionPassword" type="password" placeholder="Ingresa la contraseña"
+                                class="form-input" formControlName="use_password" />
+                                <div class="text-red-500 text-sm"
+                                *ngIf="formUser.get('use_password')?.touched && !formUser.get('use_password')?.valid">
+                                La contraseña debe contener al menos una mayúscula, una minúscula, un número y un carácter especial.
+                            </div>
+                        </div>
+                        <div>
+                            <label for="actionCpass">Confirmar contraseña:</label>
+                            <input id="actionCpass" type="password" placeholder="Confirma tu contraseña"
+                                class="form-input" formControlName="use_confirm_password" />
+                            </div>
+                            <div class="text-red-500 text-sm"
+                                *ngIf="formUser.get('use_confirm_password')?.touched && !formUser.get('use_confirm_password')?.valid">
+                                Las contraseñas no coinciden.
+                            </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="actionRol">Rol:</label>
+                            <ng-select [items]="roles()" bindLabel="name" formControlName="use_role"
+                                bindValue="id" [clearable]="false" placeholder="Seleccione el rol"
+                                class="custom-multiselect" name="use_role">
+                            </ng-select>
+                        </div>
+                        <div>
+                            <label for="actionSuperiror">Superior:</label>
+                            <ng-select [items]="users()" bindLabel="name" formControlName="use_superior"
+                                bindValue="id" [clearable]="false" placeholder="Seleccione el inmediato superior"
+                                class="custom-multiselect" name="use_superior">
+                            </ng-select>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        @if(this.formUser.getRawValue().use_code){
+                        <div>
+                            <label for="actionStatus">Estado:</label>
+                            <ng-select [items]="optionsStatus" formControlName="use_status"
+                                bindLabel="name" bindValue="result" [clearable]="false" [searchable]="false"
+                                placeholder="Seleccione el estado" class="custom-multiselect" name="use_status">
+                            </ng-select>
+                        </div>
+                        }
+
+                    </div>
+                    <div class="mt-8 flex items-center justify-end">
+                        <button type="button" class="btn btn-outline-danger" (click)="close()">
+                            Cancelar
+                        </button>
+                        <button [disabled]="formUser.invalid" class="btn btn-primary ltr:ml-4 rtl:mr-4">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
