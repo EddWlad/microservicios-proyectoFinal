@@ -21,7 +21,7 @@ export class UsersService {
         `${this.apiUrl}?page=${page}&limit=${limit}&search=${search}`
       )
       .pipe(
-        map((response) => response),
+        map((response:any) => response),
         catchError(this.helpers.errorHandler)
       );
   }
@@ -29,7 +29,7 @@ export class UsersService {
     return this.http
       .get<UserResponse>(`${this.apiUrl}/${id}`)
       .pipe(
-        map((resp) => resp),
+        map((resp:any) => resp),
         catchError(this.helpers.errorHandler)
       );
   }
@@ -37,7 +37,7 @@ export class UsersService {
     return this.http
       .post<UserResponse>(`${this.apiUrl}`, user )
       .pipe(
-        map((resp) => {
+        map((resp: any) => {
           return resp;
         }),
         catchError(this.helpers.errorHandler)
@@ -48,7 +48,7 @@ export class UsersService {
     return this.http
       .put<UserResponse>(`${this.apiUrl}/${use_code}`, rest )
       .pipe(
-        map((resp) => {
+        map((resp: any) => {
           return resp;
         }),
         catchError(this.helpers.errorHandler)
@@ -58,7 +58,7 @@ export class UsersService {
     return this.http
       .delete<UserResponse>(`${this.apiUrl}/${id}`)
       .pipe(
-        map((resp) => {
+        map((resp: any) => {
           return resp;
         }),
         catchError(this.helpers.errorHandler)
@@ -70,7 +70,7 @@ export class UsersService {
         `${this.apiUrl}/roles?page=${page}&limit=${limit}&search=${search}`
       )
       .pipe(
-        map((response) => response),
+        map((response: any) => response),
         catchError(this.helpers.errorHandler)
       );
   }
