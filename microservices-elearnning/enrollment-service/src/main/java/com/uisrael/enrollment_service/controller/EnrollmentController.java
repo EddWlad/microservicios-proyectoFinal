@@ -53,10 +53,9 @@ public class EnrollmentController {
 				enrollmentSave = enrollmentservice.update(existingEnrollment.getId(), enrollment);
 				return ResponseEntity.status(HttpStatus.CREATED).body(enrollmentSave);
 			} else {
-				return ResponseEntity.status(HttpStatus.CONFLICT).body(null); // Conflict for existing enrollment
+				return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
 			}
 		} catch (Exception e) {
-			// Agregar el registro del error
 			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		}
@@ -68,7 +67,7 @@ public class EnrollmentController {
 			Enrollment existingEnrollment = enrollmentservice.obtenerPorId(id);
 
 			if (existingEnrollment == null) {
-				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // No se encontró la inscripción
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // 
 			}
 
 			enrollment.setId(id);
@@ -87,7 +86,7 @@ public class EnrollmentController {
 			return ResponseEntity.ok("The enrollment was successfully deleted.");
 		} else {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-					.body("There was a problem deleting the course.");
+					.body("There was a problem deleting the enrollment.");
 		}
 	}
 }
