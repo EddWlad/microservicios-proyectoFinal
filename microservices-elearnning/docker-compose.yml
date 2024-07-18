@@ -25,7 +25,33 @@ services:
       - mysql:/var/lib/mysql
     ports:
       - 3360:3306
+      
+  mongo-db:
+    image: mongo:latest
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: diana
+      MONGO_INITDB_ROOT_PASSWORD: mongo
+    volumes:
+      - mongo:/data/db
+    ports:
+      - 27017:27017
+
+  db-users:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: userServicio
+      POSTGRES_DB: db_userServices
+      POSTGRES_PASSWORD: 123456
+    volumes:
+      - postgres_users:/var/lib/postgresql/data
+    ports:
+      - 5438:5432
+
 
 volumes:
+  postgres_users:
   postgres:
   mysql:
+  mongo:

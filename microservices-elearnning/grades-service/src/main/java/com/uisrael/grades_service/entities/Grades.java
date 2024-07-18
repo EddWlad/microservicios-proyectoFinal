@@ -31,8 +31,7 @@ public class Grades {
 	    
 	    @NotNull
 	    private String id_courses;
-	    
-	    @NotBlank
+
 	    private double grade;
 	    
 	    @Column(columnDefinition = "Integer default 1")

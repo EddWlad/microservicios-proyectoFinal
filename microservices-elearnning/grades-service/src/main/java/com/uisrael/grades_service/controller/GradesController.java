@@ -56,6 +56,16 @@ public class GradesController {
 		}
 	}
 	
+	@GetMapping("/{id}")
+    public ResponseEntity<Grades> getCourse(@PathVariable String id) {
+        Grades course = gradesService.getById(id);
+        if (course != null) {
+            return ResponseEntity.ok(course);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+	
 	@PutMapping("/{id}")
 	public ResponseEntity<?> editGrade(@Valid @PathVariable String id, @Valid @RequestBody Grades grades, BindingResult bindingResult){
 		if (bindingResult.hasErrors()) {
