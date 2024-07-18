@@ -8,7 +8,7 @@ spring:
   config:
     import: configserver:http://localhost:8096
   profiles:
-    active: prod
+    active: dev
 
 eureka:
   instance:
@@ -17,5 +17,5 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      defaultZone: http://localhost:8789/eureka
+      defaultZone: http://localhost:8761/eureka
 
