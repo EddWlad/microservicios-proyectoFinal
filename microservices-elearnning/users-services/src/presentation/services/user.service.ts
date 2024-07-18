@@ -27,16 +27,8 @@ export class UserService {
 
       const user = User.create(registerUserDto as DeepPartial<User>);
 
-      //encriptar la contraseña
-      user.use_password = bcryptAdapter.hash(registerUserDto.use_password);
       await user.save();
 
-      //Email de confirmacion
-      // await this.sendEmailValidationLink(
-      //   user.use_email,
-      //   user.use_name,
-      //   user.use_lastname
-      // );
 
       const { use_password, ...userEntity } = UserEntity.fromObject(user);
       return {
@@ -56,8 +48,6 @@ export class UserService {
 
     if (existUser) throw CustomError.badRequest("Email already exist");
     try {
-
-      updateUserDto.use_password = bcryptAdapter.hash(updateUserDto.use_password);
 
       const user = await User.update(
         { use_code: updateUserDto.use_code },

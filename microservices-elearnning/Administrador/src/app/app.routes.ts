@@ -11,7 +11,7 @@ export const routes: Routes = [
             {
                 path: 'login',
                 title: 'Login',
-                canActivate: [redirectGuard],
+                //canActivate: [redirectGuard],
                 loadComponent: () =>
                     import('./modules/auth/pages/login/login.component'),
             },
@@ -24,13 +24,13 @@ export const routes: Routes = [
     },
     {
         path: 'administrador',
-        canActivate: [authGuard],
+        //canActivate: [authGuard],
         loadComponent: () => import('./modules/admin/admin.component'),
         children: [
 
             {
                 path: '',
-                redirectTo: '/administrador/tablero',
+                redirectTo: '/administrador/usuarios',
                 pathMatch: 'full',
             },
             {

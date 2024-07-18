@@ -13,11 +13,7 @@ export class AuthController {
     return res.status(500).json({success: false, data: null, error: 'Internal server error' });
   }
   loginUser = (req: Request, res: Response) => {
-    const [error, loginDto] = LoginUserDto.create(req.body);
-
-    if (error) return res.status(400).json(error);
-
-    this.authService.loginUser(loginDto!).
+    this.authService.loginUser(req.body.username!).
       then((user) => res.json(user))
       .catch(error => this.handleError(error, res));
   };

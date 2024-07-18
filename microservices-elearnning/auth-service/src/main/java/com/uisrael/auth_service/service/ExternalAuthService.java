@@ -7,7 +7,6 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import com.uisrael.auth_service.dto.AuthUser;
-import com.uisrael.auth_service.dto.AuthUserDto;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -18,15 +17,16 @@ public class ExternalAuthService {
     @Autowired
     private RestTemplate restTemplate;
 
-    public AuthUser fetchUser(String dto) {
-        String url = "http://localhost:8090/api/user";
+    public AuthUser fetchUser(String username) {
+        String url = "http://localhost:8090/api/auth/login";
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
-            HttpEntity<String> request = new HttpEntity<>(dto, headers);
+            String jsonRequest = String.format("{\"username\":\"%s\"}", username);
+            HttpEntity<String> request = new HttpEntity<>(jsonRequest, headers);
 
             ResponseEntity<AuthUser> response = restTemplate.postForEntity(url, request, AuthUser.class);
-
+            System.out.println("Usuario autenticado: " + response.toString());
             if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
                 return response.getBody();
             }

@@ -26,7 +26,7 @@ public class AuthService {
         if (user == null) {
             return null;
         }
-        if (passwordEncoder.matches(dto.getPassword(), user.getUsePassword())) {
+        if (passwordEncoder.matches(dto.getPassword(), user.getPassword())) {
             return new TokenDto(jwtProvider.createToken(user));
         }
         return null;

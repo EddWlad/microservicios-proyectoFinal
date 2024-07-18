@@ -5,31 +5,15 @@ import { CustomError, LoginUserDto, UserEntity, ValidateTokenDto } from "../../d
 export class AuthService {
   constructor() { }
 
-  public async loginUser(loginUserDto: LoginUserDto) {
+  public async loginUser(userName: string) {
     const user = await User.findOne({
-      where: { use_email: loginUserDto.email },
+      where: { use_email: userName },
       relations: ['use_role'],
     });
-    if (!user) throw CustomError.badRequest("Incorrect username or password");
-    const isMatching = bcryptAdapter.compare(
-      loginUserDto.password,
-      user.use_password
-    );
-    if (!isMatching)
-      throw CustomError.badRequest("Incorrect username or password");
-
-    const { use_password, use_emailValidated, use_nui, use_code, ...userEntity } = UserEntity.fromObject(user);
-
-    const token = await JwtAdapter.generateToken({ id: user.use_code });
-
-    if (!token) throw CustomError.internalServer("Error while creating JWT");
 
     return {
       success: true,
-      data: {
-        user: { name: userEntity.use_name, lastname: userEntity.use_lastname, role: userEntity.use_role.rol_name, email: userEntity.use_email, img: userEntity.use_img },
-        token: token
-      },
+      data: user,
       error: null
     };
   }

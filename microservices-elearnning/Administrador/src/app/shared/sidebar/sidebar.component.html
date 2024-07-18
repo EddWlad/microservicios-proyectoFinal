@@ -3,9 +3,8 @@
     class="sidebar fixed bottom-0 top-0 z-50 h-full min-h-screen w-[260px] shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] transition-all duration-300">
     <div class="h-full bg-white dark:bg-[#0e1726]">
       <div class="flex items-center justify-between px-4 py-3 w-full">
-        <a routerLink="/" class="main-logo flex shrink-0 items-center">
-          <img class="ml-[15px] w-32 flex-none" src="/assets/images/Logo_mi_chance.png" />
-          <!-- <h1 class="text-2xl font-bold text-center text-blue-600">Mi Chance</h1> -->
+        <a routerLink="/" class="main-logo flex shrink-0 items-center">        
+          <h1 class="text-2xl font-bold text-center text-blue-600">Donkey</h1>
         </a>
         <a href="javascript:;"
           class="collapse-icon flex h-8 w-8 items-center rounded-full transition duration-300 hover:bg-gray-500/10 hover:text-primary rtl:rotate-180 dark:text-white-light dark:hover:bg-dark-light/10"
@@ -16,78 +15,7 @@
       <ng-scrollbar class="relative !h-[calc(100vh-80px)]" appearance="compact">
         <ul class="relative space-y-0.5 p-4 py-0 font-semibold">
 
-            <li class="accordion menu nav-item">
-              <button type="button" class="nav-link group w-full"
-                [ngClass]="{ active: activeDropdown.includes('chance') }" (click)="toggleAccordion('chance')">
-                <div class="flex items-center">
-                  <icon-money class="shrink-0  group-hover:!text-primary" />
 
-                  <span class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">
-                   Chance</span>
-                </div>
-                <div [ngClass]="{
-                    'rtl:rotate-90 -rotate-90':
-                      !activeDropdown.includes('chance')
-                  }">
-                  <icon-caret-down />
-                </div>
-              </button>
-              <div [@slideDownUp]="!activeDropdown.includes('chance')" class="accordion-content">
-                <ul class="sub-menu text-gray-500">
-                  <li *appAuthorization=" { module: 'Tableros', permit: 'view' }">
-                    <a routerLink="/administrador/tablero" routerLinkActive="active" (click)="toggleMobileMenu()">Tablero</a>
-                  </li>                             
-                  <li *appAuthorization=" { module: 'Apuestas', permit: 'view' }">
-                    <a routerLink="/administrador/apuestas" routerLinkActive="active" (click)="toggleMobileMenu()">Apuestas</a>
-                  </li>
-                  <li *appAuthorization=" { module: 'Creditos', permit: 'view' }">
-                    <a routerLink="/administrador/creditos" routerLinkActive="active" (click)="toggleMobileMenu()">Creditos</a>
-                  </li>
-                  <li *appAuthorization=" { module: 'Apuestas-ganadoras', permit: 'view' }">
-                    <a routerLink="/administrador/apuestas-ganadoras" routerLinkActive="active" (click)="toggleMobileMenu()">Apuestas Ganadoras</a>
-                  </li>
-                  <li *appAuthorization=" { module: 'Ganadores-chance', permit: 'view' }">
-                    <a routerLink="/administrador/ganadores-chance" routerLinkActive="active" (click)="toggleMobileMenu()">Ganadores</a>
-                  </li>
-                  <li *appAuthorization=" { module: 'Loterias', permit: 'view' }">
-                    <a routerLink="/administrador/loterias" routerLinkActive="active" (click)="toggleMobileMenu()">Loterias</a>
-                  </li>     
-                  <li *appAuthorization=" { module: 'Configuraciones', permit: 'view' }">
-                    <a routerLink="/administrador/configuraciones" routerLinkActive="active" (click)="toggleMobileMenu()">Configuraciones</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="accordion menu nav-item">
-              <button type="button" class="nav-link group w-full"
-                [ngClass]="{ active: activeDropdown.includes('loteriaDiaria') }" (click)="toggleAccordion('loteriaDiaria')">
-                <div class="flex items-center">
-                  <icon-card class="shrink-0  group-hover:!text-primary" />
-
-                  <span class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">
-                   Loteria diaria</span>
-                </div>
-                <div [ngClass]="{
-                    'rtl:rotate-90 -rotate-90':
-                      !activeDropdown.includes('loteriaDiaria')
-                  }">
-                  <icon-caret-down />
-                </div>
-              </button>
-              <div [@slideDownUp]="!activeDropdown.includes('loteriaDiaria')" class="accordion-content">
-                <ul class="sub-menu text-gray-500">
-                  <li *appAuthorization=" { module: 'Sorteos', permit: 'view' }">
-                    <a routerLink="/administrador/sorteos" routerLinkActive="active" (click)="toggleMobileMenu()">Sorteos</a>
-                  </li>
-                  <li *appAuthorization=" { module: 'Boletas', permit: 'view' }">
-                    <a routerLink="/administrador/boletas" routerLinkActive="active" (click)="toggleMobileMenu()">Boletas</a>
-                  </li>
-                  <li *appAuthorization=" { module: 'Ganadores', permit: 'view' }">
-                    <a routerLink="/administrador/ganadores" routerLinkActive="active" (click)="toggleMobileMenu()">Ganadores</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
             <li class="accordion menu nav-item">
               <button type="button" class="nav-link group w-full"
                 [ngClass]="{ active: activeDropdown.includes('usuarios') }" (click)="toggleAccordion('usuarios')">
@@ -106,10 +34,10 @@
               </button>
               <div [@slideDownUp]="!activeDropdown.includes('usuarios')" class="accordion-content">
                 <ul class="sub-menu text-gray-500">
-                  <li *appAuthorization=" { module: 'Usuarios', permit: 'view' }">
+                  <li>
                     <a routerLink="/administrador/usuarios" routerLinkActive="active" (click)="toggleMobileMenu()">Usuarios</a>
                   </li>
-                  <li *appAuthorization=" { module: 'Roles', permit: 'view' }">
+                  <li >
                     <a routerLink="/administrador/roles" routerLinkActive="active" (click)="toggleMobileMenu()">Roles</a>
                   </li>
                 </ul>
