@@ -50,12 +50,10 @@ export class FormUsersComponent implements OnInit {
     use_phone: new FormControl(null),
     use_nui: new FormControl(null),
     use_address: new FormControl(null),
-    use_settlement: new FormControl(0),
     use_password: new FormControl(null),
     use_confirm_password: new FormControl(null),
     use_role: new FormControl(null),
     use_status: new FormControl(1),
-    use_route: new FormControl(1),
   });
   optionsStatus = [
     { name: 'Activo', result: 1 },
@@ -89,9 +87,7 @@ export class FormUsersComponent implements OnInit {
         ],
       ],
       use_address: ['', [Validators.required, Validators.minLength(1)]],
-      use_superior: [null, [Validators.required, Validators.minLength(1)]],
       use_role: [null, [Validators.required, Validators.minLength(1)]],
-      use_settlement: [0],
       use_password: [
         '',
         [
@@ -105,7 +101,6 @@ export class FormUsersComponent implements OnInit {
         [Validators.required, Validators.minLength(8), this.confirmPassword],
       ],
       use_status: [1, [Validators.required, Validators.max(3)]],
-      use_route: [null],
     });
     this.formUser.get('use_role')?.valueChanges.subscribe((value) => {
       this.showLiquidation.set(this.isVendedorRole(value));
@@ -120,8 +115,6 @@ export class FormUsersComponent implements OnInit {
         use_nui: this.user()?.use_nui,
         use_password: '',
         use_confirm_password: '',
-        use_settlement: this.user()?.use_settlement,
-        use_route: this.user()?.use_route,
         use_address: this.user()?.use_address,
         use_role: this.user()?.use_role.rol_code,
         use_status: this.user()?.use_status,
@@ -135,7 +128,7 @@ export class FormUsersComponent implements OnInit {
   }
 
   getUsers() {
-    this.usersService.GetUsers(1, 1000, '').subscribe((users) => {
+    this.usersService.GetUsers().subscribe((users) => {
       this.users.set(
         users.data.users.map((x) => {
           return { id: x.use_code, name: x.use_name + ' ' + x.use_lastname };

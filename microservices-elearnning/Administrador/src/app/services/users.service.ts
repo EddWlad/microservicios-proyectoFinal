@@ -15,10 +15,10 @@ export class UsersService {
   private apiUrl = `${environment.API_URL}users/api/user`;
   constructor() {}
 
-  GetUsers(page: number, limit: number, search?: string): Observable<UsersResponse> {
+  GetUsers(): Observable<UsersResponse> {
     return this.http
       .get<UsersResponse>(
-        `${this.apiUrl}?page=${page}&limit=${limit}&search=${search}`
+        `${this.apiUrl}`
       )
       .pipe(
         map((response:any) => response),

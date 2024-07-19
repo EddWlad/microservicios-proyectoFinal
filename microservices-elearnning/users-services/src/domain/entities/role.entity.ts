@@ -22,7 +22,6 @@ export class RoleEntity {
            if (!rol_name) throw CustomError.badRequest("Missing name");
 
            if (!rol_status) throw CustomError.badRequest("Missing status");
-           if (!rol_creator_user) throw CustomError.badRequest("Missing user creator");
 
            return new RoleEntity(
             rol_code,

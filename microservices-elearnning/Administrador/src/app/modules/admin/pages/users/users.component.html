@@ -11,7 +11,7 @@
         <div class="datatable invoice-table">
             <div class="mb-4.5 flex flex-col gap-5 px-5 md:flex-row md:items-center">
                 <div class="flex items-center gap-2">
-                    <button type="button" class="btn btn-primary gap-2" (click)="openModal()"  *appAuthorization=" { module: 'Usuarios', permit: 'write' }">
+                    <button type="button" class="btn btn-primary gap-2" (click)="openModal()">
                         <icon-plus />
                         Nuevo
                     </button>
@@ -37,10 +37,10 @@
                 </ng-template>
                 <ng-template slot="actions" let-value="data">
                     <div class="flex items-center justify-center gap-4">
-                        <button type="button" class="hover:text-primary" (click)="EditUser(value.id)"  *appAuthorization=" { module: 'Usuarios', permit: 'update' }">
+                        <button type="button" class="hover:text-primary" (click)="EditUser(value.id)" >
                             <icon-edit class="h-4.5 w-4.5" />
                         </button>
-                        <button type="button" class="hover:text-danger" (click)="DeleteUser(value.id)"  *appAuthorization=" { module: 'Usuarios', permit: 'delete' }">
+                        <button type="button" class="hover:text-danger" (click)="DeleteUser(value.id)" >
                             <icon-trash-lines />
                         </button>
                     </div>

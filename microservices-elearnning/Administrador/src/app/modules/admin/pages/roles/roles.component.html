@@ -13,7 +13,7 @@
         <div class="datatable invoice-table">
             <div class="mb-4.5 flex flex-col gap-5 px-5 md:flex-row md:items-center">
                 <div class="flex items-center gap-2">
-                    <button type="button" class="btn btn-primary gap-2" (click)="openModal()" *appAuthorization=" { module: 'Roles', permit: 'write' }">
+                    <button type="button" class="btn btn-primary gap-2" (click)="openModal()" >
                         <icon-plus />
                         Nuevo
                     </button>
@@ -35,15 +35,12 @@
                     [ngClass]="[value.status == 'Activo' ? 'badge-outline-success' : 'badge-outline-danger']">{{
                     value.status }}</span>
             </ng-template>
-            <ng-template slot="actions" let-value="data">
+            <ng-template slot="actions" let-value="data">   
                 <div class="flex items-center justify-center gap-4">
-                    <button type="button" class="hover:text-cx-light" (click)="EditRol(value.id)" *appAuthorization=" { module: 'Roles', permit: 'update' }">
+                    <button type="button" class="hover:text-cx-light" (click)="EditRol(value.id)">
                         <icon-edit class="h-4.5 w-4.5" />
                     </button>
-                    <button type="button" class="hover:text-primary" (click)="EditPermit(value.id)" *appAuthorization=" { module: 'Roles', permit: 'update' }">
-                        <icon-key class="h-4.5 w-4.5" />
-                    </button>
-                    <button type="button" class="hover:text-danger" (click)="DeleteRol(value.id)" *appAuthorization=" { module: 'Roles', permit: 'delete' }">
+                    <button type="button" class="hover:text-danger" (click)="DeleteRol(value.id)" >
                         <icon-trash-lines />
                     </button>
                 </div>

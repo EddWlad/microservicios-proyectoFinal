@@ -33,7 +33,7 @@ export class RoleService {
     } catch (error) {
       throw CustomError.internalServer("Internal Server Error");
     }
-    if (role) throw CustomError.notFound("Role not exist");
+    if (!role) throw CustomError.notFound("Role not exist");
     return role;
   }
   public async getRoles() {

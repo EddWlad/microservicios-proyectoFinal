@@ -19,7 +19,6 @@ export class RoleController {
   createRole = (req: Request, res: Response) => {
     const [error, createDto] = CreateRoleDto.create({
       ...req.body,
-      rol_creator_user: req.body.user.use_code,
     });
     if (error) return res.status(400).json(error);
     this.roleService

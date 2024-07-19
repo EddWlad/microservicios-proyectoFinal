@@ -16,8 +16,6 @@ export class CreateRoleDto {
     if (typeof rol_status !== "boolean") {
       rol_statusBoolean = rol_status === "true";
     }
-    if (!rol_creator_user) return ["Missin creator user"];
-    if (!Validators.isUUID(rol_creator_user)) return ["Invalid user ID"];
 
     return [
       undefined,

@@ -67,17 +67,18 @@ export class UserService {
   public async getUser(use_code: string) {
     let user:User | null;
     try {
-      user = await User.findOne({where:{use_code}});
+      user = await User.findOne({where:{use_code}, relations:['use_role'],});
     } catch (error) {
       throw CustomError.internalServer("Internal Server Error");
     }
-    if (user) throw CustomError.notFound("User not exist");
+    if (!user) throw CustomError.notFound("User not exist");
     return user;
   }
   public async getUsers(paginationDto: PaginationDto) {
     const { page, limit } = paginationDto;
     try {
       const [users, total] = await User.findAndCount({
+        relations:['use_role'],
         skip: (page - 1) * limit,
         take: limit,
       });

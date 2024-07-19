@@ -82,26 +82,16 @@
                                 bindValue="id" [clearable]="false" placeholder="Seleccione el rol"
                                 class="custom-multiselect" name="use_role">
                             </ng-select>
-                        </div>
-                        <div>
-                            <label for="actionSuperiror">Superior:</label>
-                            <ng-select [items]="users()" bindLabel="name" formControlName="use_superior"
-                                bindValue="id" [clearable]="false" placeholder="Seleccione el inmediato superior"
-                                class="custom-multiselect" name="use_superior">
-                            </ng-select>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
+                        </div>       
                         @if(this.formUser.getRawValue().use_code){
-                        <div>
-                            <label for="actionStatus">Estado:</label>
-                            <ng-select [items]="optionsStatus" formControlName="use_status"
-                                bindLabel="name" bindValue="result" [clearable]="false" [searchable]="false"
-                                placeholder="Seleccione el estado" class="custom-multiselect" name="use_status">
-                            </ng-select>
-                        </div>
-                        }
-
+                            <div>
+                                <label for="actionStatus">Estado:</label>
+                                <ng-select [items]="optionsStatus" formControlName="use_status"
+                                    bindLabel="name" bindValue="result" [clearable]="false" [searchable]="false"
+                                    placeholder="Seleccione el estado" class="custom-multiselect" name="use_status">
+                                </ng-select>
+                            </div>
+                            }             
                     </div>
                     <div class="mt-8 flex items-center justify-end">
                         <button type="button" class="btn btn-outline-danger" (click)="close()">

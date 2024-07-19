@@ -23,7 +23,7 @@ import { HelpersService } from '@services/helpers.service';
 })
 export class FormRolesComponent implements OnInit {
   public rolService = inject(RolesService);
-  public dialogRef = inject(DialogRef<Role>);
+  public dialogRef = inject(DialogRef);
   public formBuilder = inject(FormBuilder);
   public router = inject(Router);
   public helpers = inject(HelpersService);
@@ -32,7 +32,7 @@ export class FormRolesComponent implements OnInit {
     id: new FormControl(null),
     name: new FormControl(''),
     description: new FormControl(''),
-    status: new FormControl(1),
+    status: new FormControl(true),
   });
   id?: string;
   constructor(@Inject(DIALOG_DATA) public rol: Role) {}
@@ -41,7 +41,7 @@ export class FormRolesComponent implements OnInit {
       id: null,
       name: ['', [Validators.required, Validators.minLength(1)]],
       description: ['', [Validators.required, Validators.minLength(1)]],
-      status: 1,
+      status: true,
     });
     if (this.rol) {
       this.id = this.rol.rol_code;
@@ -70,7 +70,7 @@ export class FormRolesComponent implements OnInit {
           if (res.success) {
             this.helpers.alertMixi('Rol insertado correctamente.');
             this.rolService.GetRoles();
-            this.close();
+            this.close(true);
           } else {
             this.helpers.alertMixi(res.error, 'error');
           }
@@ -86,7 +86,7 @@ export class FormRolesComponent implements OnInit {
           if (res.success) {
             this.helpers.alertMixi('Rol modificado correctamente.');
             this.rolService.GetRoles();
-            this.close();
+            this.close(true);
           } else {
             this.helpers.alertMixi(res.error, 'error');
           }
@@ -96,9 +96,8 @@ export class FormRolesComponent implements OnInit {
         },
       });
     }
-    this.close();
   }
-  close() {
-    this.dialogRef.close();
+  close(result: boolean = false) {
+    this.dialogRef.close(result);
   }
 }

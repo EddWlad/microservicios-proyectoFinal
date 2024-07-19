@@ -1,27 +1,19 @@
 package com.uisrael.auth_service.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
-@Builder
-@Entity
 public class AuthUser {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String name;
-    private String lastname;
-    private String email;
-    private String password;
-    private String role;
+    private String use_code;
+    private String use_name;
+    private String use_lastname;
+    private String use_nui;
+    private String use_email;
+    private boolean use_emailValidated;
+    private String use_password;
+    private String use_phone;
+    private String use_address;
+    private String use_img;
+    private int use_status;
+    private Role use_role;
 }

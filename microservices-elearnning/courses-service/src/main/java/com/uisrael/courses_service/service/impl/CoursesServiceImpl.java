@@ -57,6 +57,7 @@ public class CoursesServiceImpl implements ICoursesService{
 		if(courseDb != null)
 		{
 			courseDb.setName(courses.getName());
+			courseDb.setId_usuario(courses.getId_usuario());
 			courseDb.setDescription(courses.getDescription());
 			courseDb.setDurationTime(courses.getDurationTime());
 			courseDb.setState(courses.getState());

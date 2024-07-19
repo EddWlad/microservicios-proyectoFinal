@@ -66,10 +66,6 @@ export default class RolesComponent implements OnInit{
         title: 'Estado',
       },
       {
-        field: 'create_at',
-        title: 'Fecha creacion',
-      },
-      {
         field: 'actions',
         title: 'Acciones',
         sort: false,
@@ -120,22 +116,7 @@ export default class RolesComponent implements OnInit{
       }
     });
   }
-  EditPermit(id: string) {
-    this.permitsService.GetPermits(id).subscribe({
-      next: (res) => {
-        this.openModalPermit(res.data);
-      },
-      error: (err) => {
-        this.helpers.alertMixi(err, 'error');
-      },
-    });
-  }
-  openModalPermit(permits: Permit[]) {
-    this.dialog.open(FormPermitsComponent, {
-      autoFocus: false,
-      data: permits,
-    });
-  }
+
   openModal(rol?: Role) {
     const dialogRef = this.dialog.open(FormRolesComponent, {
       autoFocus: false,

@@ -45,6 +45,12 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('./modules/admin/pages/roles/roles.component'),
             },
+            {
+                path: 'cursos',
+                title: 'Cursos',
+                loadComponent: () =>
+                    import('./modules/admin/pages/courses/courses.component'),
+            },
         ]
     },
     {

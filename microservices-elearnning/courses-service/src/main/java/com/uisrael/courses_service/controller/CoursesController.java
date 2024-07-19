@@ -82,23 +82,23 @@ public class CoursesController {
             Courses courseValid = coursesService.searchByName(courses.getName());
             if (courseValid == null || courseValid.getId().equals(id)) {
                 coursesService.updateCourses(id, courses);
-                return ResponseEntity.ok("Course edit success");
+                return ResponseEntity.ok(courseValid);
             } else {
-                return ResponseEntity.status(HttpStatus.CONFLICT).body("Courses already exist.");
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
             }
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 
 	
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteCourse(@PathVariable String id) {
+    public ResponseEntity<Boolean> deleteCourse(@PathVariable String id) {
         boolean result = coursesService.deleteCourses(id);
         if (result) {
-            return ResponseEntity.ok("The course was successfully deleted.");
+            return ResponseEntity.ok(result);
         } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("There was a problem deleting the course.");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
         }
     }
 

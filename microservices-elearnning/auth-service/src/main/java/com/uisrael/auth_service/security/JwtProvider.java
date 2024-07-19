@@ -26,15 +26,15 @@ public class JwtProvider {
 
     public String createToken(AuthUser authUser) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("id", authUser.getId());
-        claims.put("role", authUser.getRole());
+        claims.put("id", authUser.getUse_code());
+        claims.put("role", authUser.getUse_role());
 
         Date now = new Date();
         Date exp = new Date(now.getTime() + 3600000);
 
         return Jwts.builder()
                 .setClaims(claims)
-                .setSubject(authUser.getEmail())
+                .setSubject(authUser.getUse_email())
                 .setIssuedAt(now)
                 .setExpiration(exp)
                 .signWith(secret)

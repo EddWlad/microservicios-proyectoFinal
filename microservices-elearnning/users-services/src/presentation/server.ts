@@ -32,7 +32,7 @@ export class Server {
     this.app.use( express.json() ); // raw
     this.app.use( express.urlencoded({ extended: true }) ); // x-www-form-urlencoded
     this.app.use(cors({
-      origin:"http://localhost:5173",
+      origin:"*",
       methods:['GET','POST','PUT','PATCH','DELETE']
     }))
     //* Public Folder

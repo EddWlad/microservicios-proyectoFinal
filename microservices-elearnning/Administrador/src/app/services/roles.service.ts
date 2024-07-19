@@ -11,7 +11,7 @@ import { Role, RoleResponse, RolesResponse, RoleTable } from '@interfaces/Role';
 export class RolesService {
   private http = inject(HttpClient);
   private helpers = inject(HelpersService);
-  private apiUrl = `${environment.API_URL}api/roles`;
+  private apiUrl = `${environment.API_URL}users/api/role`;
 
   constructor() {}
   GetRoles() {
@@ -23,7 +23,7 @@ export class RolesService {
             name: x.rol_name,
             description: x.rol_description,
             create_at: this.helpers.convertDate(x.rol_create_at || ''),
-            status: x.rol_status == 1 ? 'Activo' : 'Inactivo',
+            status: x.rol_status? 'Activo' : 'Inactivo',
           };
         })
       ),

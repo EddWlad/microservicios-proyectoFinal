@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.uisrael.auth_service.dto.AuthUser;
 import com.uisrael.auth_service.dto.AuthUserDto;
+import com.uisrael.auth_service.dto.DataUsers;
 import com.uisrael.auth_service.dto.RequestDto;
 import com.uisrael.auth_service.dto.TokenDto;
 import com.uisrael.auth_service.security.JwtProvider;
@@ -22,12 +22,12 @@ public class AuthService {
     private ExternalAuthService externalAuthService;
 
     public TokenDto login(AuthUserDto dto) {
-        AuthUser user = externalAuthService.fetchUser(dto.getUserName());
+        DataUsers user = externalAuthService.fetchUser(dto.getUserName());
         if (user == null) {
             return null;
         }
-        if (passwordEncoder.matches(dto.getPassword(), user.getPassword())) {
-            return new TokenDto(jwtProvider.createToken(user));
+        if (passwordEncoder.matches(dto.getPassword(), user.getData().getUse_password())) {
+            return new TokenDto(jwtProvider.createToken(user.getData()));
         }
         return null;
     }

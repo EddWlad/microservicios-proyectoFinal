@@ -1,0 +1,66 @@
+<div class="fixed inset-0 z-[999] overflow-y-auto bg-[black]/60 dark:border-[#1b2e4b] dark:text-white-dark">
+    <div class="flex min-h-screen items-center justify-center px-4">
+        <div class="panel my-8 w-[90%] max-w-lg rounded-lg border-0 p-0 md:w-full" (cdkOutsideClick)="close()">
+            <button type="button" class="absolute top-4 text-white-dark hover:text-dark ltr:right-4 rtl:left-4"
+                (click)="close()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                    class="h-6 w-6">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div
+                class="bg-primary py-3 text-lg font-normal ltr:pl-5 ltr:pr-[50px] rtl:pr-5 rtl:pl-[50px] dark:bg-[#121c2c] text-white">
+                {{(this.formCourse.getRawValue().id ? 'Editar rol' : 'Nuevo rol') }}</div>
+            <div class="p-5">
+                <form [formGroup]="formCourse" class="space-y-5" (ngSubmit)="saveRol()">
+                    <div>
+                        <label for="actionName">Nombre:</label>
+                        <input id="actionName" name="name" type="text" placeholder="Ingresa el nombre"
+                            class="form-input" formControlName="name" />
+                    </div>
+                    <div>
+                        <label for="actionDescription">Descripción:</label>
+                        <div class="flex flex-1">
+                            <input id="actionDescription" name="description" type="text"
+                                placeholder="Ingresa la descripción" class="form-input" formControlName="description" />
+                        </div>
+                    </div>
+                    <div>
+                        <label for="actionDescription">Duración:</label>
+                        <div class="flex flex-1">
+                            <input id="actionDescription" name="description" type="text"
+                                placeholder="Ingresa la la duración del curso" class="form-input"
+                                formControlName="durationTime" />
+                        </div>
+                    </div>
+                    <div>
+                        <label for="actionRol">Profesor:</label>
+                        <ng-select [items]="users()" bindLabel="name" formControlName="id_usuario"
+                            bindValue="id" [clearable]="false" placeholder="Seleccione el usuario"
+                            class="custom-multiselect" name="use_role">
+                        </ng-select>
+                    </div>  
+                    @if(this.formCourse.getRawValue().id){
+                    <div>
+                        <label for="actionCpass">Estado:</label>
+                        <select class="form-select text-white-dark" formControlName="status" name="status">
+                            <option value="">Seleccione el estado</option>
+                            <option value="1">Activo</option>
+                            <option value="2">Inactivo</option>
+                        </select>
+                    </div>
+                    }
+                    <div class="mt-8 flex items-center justify-end">
+                        <button type="button" class="btn btn-outline-danger" (click)="close()">
+                            Cancelar
+                        </button>
+                        <button [disabled]="formCourse.invalid"
+                            class="btn btn-primary ltr:ml-4 rtl:mr-4">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

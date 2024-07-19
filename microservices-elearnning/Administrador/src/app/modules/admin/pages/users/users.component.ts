@@ -71,10 +71,8 @@ export default class UsersComponent implements OnInit {
       { field: 'nui', title: 'Identificación' },
       { field: 'fullname', title: 'Nombre' },
       { field: 'email', title: 'Correo' },
-      { field: 'settlement', title: 'Liquidación' },
       { field: 'role', title: 'Rol' },
       { field: 'status', title: 'Estado' },
-      { field: 'create_at', title: 'Fecha creación', type: 'date' },
       {
         field: 'actions',
         title: 'Acciones',
@@ -86,7 +84,7 @@ export default class UsersComponent implements OnInit {
   }
   GetUsers() {
     return this.usersService
-      .GetUsers(this.params.page, this.params.limit, this.params.search)
+      .GetUsers()
       .subscribe((users) => {
         const userArray = users.data.users.map((x) => {
           return {
